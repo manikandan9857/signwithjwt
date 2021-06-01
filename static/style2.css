@@ -1,0 +1,46 @@
+h1{
+    text-align:left;
+    text-decoration: firebrick;
+    color: firebrick;
+
+}
+h2{
+    
+    padding: 0px;
+    text-align: justify;
+    color: rgb(194, 31, 216);
+}
+ul{
+    background-color: rgb(54, 61, 59);
+    list-style-type: none;
+    overflow: hidden;
+   
+}
+li a{
+    display: inline;
+    text-decoration: none;
+    color: seashell;
+    float:left;
+    padding: 7px;   
+}
+input[type=submit]{
+
+    position: fixed;
+    right: 10px;
+    top:5px;
+    padding: 4px;
+    color: seashell;
+    background-color: rgb(54, 61, 59);
+    border-radius: 5px;
+
+}
+li a:hover {
+    background-color: #111;
+  }
+.log:hover{
+ 
+    opacity:1;
+    color: #36c8f4;
+    cursor: pointer;
+
+}

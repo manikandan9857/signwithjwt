@@ -1,0 +1,61 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-sacel=1.0" /> 
+        <title>Sign up</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <h1 style="color: rgb(95, 95, 119)" ;>Sign up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <form  id="reg-form">
+            Username 
+            <br>
+            <input type="email" autocomplete="off" name="email" id="email" placeholder="Enter your Email id" required><br>
+            Password 
+            <br>
+            <input type="password" autocomplete="off" name="password" id="password" placeholder="Enter your password" minlength="6" required><br>
+            Mobile
+            <br>
+            <input type="number" autocomplete="off" name="mobile" id="mobile" placeholder="Enter your mobile" minlength="10" maxlength="10"required ><br>
+            <input type="submit" class="signupbtn" value="Signup">
+
+        </form> 
+        <script>
+            const form = document.getElementById('reg-form')
+            form.addEventListener('submit',userRegister)
+
+            //send data as Json(COMMON)
+
+            async function userRegister(event){
+                 event.preventDefault()
+                 const username =document.getElementById('email').value
+                 const password =document.getElementById('password').value
+                 const mobile =document.getElementById('mobile').value
+
+               const result =  await fetch('/api/register',{
+
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        mobile
+                    })
+                }).then((res)=> res.json())
+
+                if(result.status === 'ok'){
+                    ///everything went fine
+                    alert('User Registered Successfully')
+                    window.location="login.html";
+
+            
+                }else{
+                    alert(result.error)
+                }
+            }
+        </script>
+    </body>
+</html>

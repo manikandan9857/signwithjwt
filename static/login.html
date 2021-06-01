@@ -1,0 +1,58 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-sacel=1.0" /> 
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="style1.css">
+    </head>
+    <body>
+        <h1 style="color:rgb(110, 136, 160)";>Login</h1>
+        
+        <form  id="login">
+            Username 
+            <br>
+            <input type="email" autocomplete="off" name="email" id="email" placeholder="Enter your Email id" required><br>
+            Password 
+            <br>
+            <input type="password" autocomplete="off" name="password" id="password" placeholder="Enter your password" minlength="6" required><br>
+            
+            <input type="submit" class="login" value="Login">
+
+        </form> 
+        <script>
+            const form = document.getElementById('login')
+            form.addEventListener('submit',login)
+
+            //send data as Json(COMMON)
+
+            async function login(event){
+                 event.preventDefault()
+                 const username =document.getElementById('email').value
+                 const password =document.getElementById('password').value
+
+               const result =  await fetch('/api/login',{
+
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+                }).then((res)=> res.json())
+
+                if(result.status === 'ok') {
+                    ///everything went fine
+                    console.log('Got the token:', result.data)
+                    localStorage.setItem('token',result.data)
+                    localStorage.getItem('token',result.data)
+                    alert('Successfully logged in')
+                    window.location="userProfile.html";
+                }else{
+                    alert(result.error)
+                }
+            }
+        </script>
+    </body>
+</html>
